@@ -4,16 +4,40 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Game Mode")]
+    public bool twinStick = false;
+    public bool mouseAim = false;
+    public bool classic = false;
+
     [Range(0.1f, 30f)]
     public float playerSpeed;
 
     [Header ("Shooting")]
+    public GameObject gun;
     public GameObject ammo;
+    public float fireRate = 0.5f;
+    public bool canFire = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (twinStick)
+        {
+            gun.GetComponent<TwinStickScript>().enabled = true;
+            gun.GetComponent<GunScript>().enabled = false;
+        }
+
+        else if (mouseAim)
+        {
+            gun.GetComponent<TwinStickScript>().enabled = false;
+            gun.GetComponent<GunScript>().enabled = true;
+        }
+
+        else if (classic)
+        {
+            gun.GetComponent<TwinStickScript>().enabled = false;
+            gun.GetComponent<GunScript>().enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -32,12 +56,23 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            ShootOnce();
         }
     }
 
-    public void Shoot()
+    public void ShootOnce()
     {
-        Instantiate(ammo, transform.position, transform.rotation);
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(ammo, gun.transform.position, gun.transform.rotation);
+        }
+    }
+
+    public IEnumerator Shoot()
+    {
+        Instantiate(ammo, gun.transform.position, gun.transform.rotation);
+        canFire = false;
+        yield return new WaitForSeconds(fireRate);
+        canFire = true;
     }
 }

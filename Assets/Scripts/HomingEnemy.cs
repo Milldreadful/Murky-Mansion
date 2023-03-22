@@ -19,4 +19,12 @@ public class HomingEnemy : MonoBehaviour
         transform.LookAt(target);
         transform.Translate(Vector3.forward * enemySpeed * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
