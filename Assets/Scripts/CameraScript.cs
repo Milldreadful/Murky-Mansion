@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public Transform target;
-    public float cameraSpeed = 2f;
+    public Transform Player;
+    public Vector3 Offset;
+
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,10 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position, cameraSpeed * Time.deltaTime);
+        if (Player != null)
+        {
+            transform.position = Player.position + Offset;
+        }
     }
+
 }

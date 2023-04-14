@@ -22,8 +22,15 @@ public class PlayerControllerScript : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float depth = Input.GetAxis("Depth");
 
-        transform.Translate(Vector3.right * horizontal * playerSpeed * Time.deltaTime);
-        transform.Translate(Vector3.forward * depth * playerSpeed * Time.deltaTime);
+        Vector3 movement = new Vector3(horizontal, 0.0f, depth);
+        transform.rotation = Quaternion.LookRotation(movement);
+
+
+        transform.Translate(movement * playerSpeed * Time.deltaTime, Space.World);
+
+        //transform.Translate(Vector3.right * horizontal * playerSpeed * Time.deltaTime);
+        //transform.Translate(Vector3.forward * depth * playerSpeed * Time.deltaTime);
+
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
