@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootingScript : MonoBehaviour
 {
     public GameObject sprayEffect;
+    public Transform waterSpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,11 @@ public class ShootingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Jump"))
+        {
+            Instantiate(sprayEffect, waterSpawner.position, waterSpawner.rotation);
+        }
+
         if(Input.GetButton("Jump"))
         {
             sprayEffect.SetActive(true);
@@ -22,7 +28,10 @@ public class ShootingScript : MonoBehaviour
 
         else
         {
-            sprayEffect.SetActive(false);
+            //sprayEffect.SetActive(false);
+            ParticleSystem ps = sprayEffect.GetComponent<ParticleSystem>();
+            var main = ps.main;
+            main.loop = false;
         }
     }
 }

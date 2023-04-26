@@ -9,27 +9,18 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.Translate(Vector3.forward * enemySpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * enemySpeed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnParticleCollision(GameObject other)
     {
-        if (collision.gameObject.CompareTag("Spray"))
-        {
-            Destroy(gameObject);
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Destroy(other.gameObject);
-        }
+        gameObject.transform.localScale = new Vector3(transform.localScale.x - 0.1f, transform.localScale.y - 0.1f, transform.localScale.z - 0.1f);
+        //Destroy(gameObject);
     }
 }
