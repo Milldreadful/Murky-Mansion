@@ -16,19 +16,14 @@ public class ShootingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+
+        if(Input.GetButtonDown("Jump"))
         {
             Instantiate(sprayEffect, waterSpawner.position, waterSpawner.rotation);
         }
 
-        if(Input.GetButton("Jump"))
-        {
-            sprayEffect.SetActive(true);
-        }
-
         else
         {
-            //sprayEffect.SetActive(false);
             ParticleSystem ps = sprayEffect.GetComponent<ParticleSystem>();
             var main = ps.main;
             main.loop = false;

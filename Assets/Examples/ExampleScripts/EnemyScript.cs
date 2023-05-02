@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    public Material material;
+
     public float enemySpeed;
+    public float maxHealth = 100;
+    public float flashTime = .15f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +24,24 @@ public class EnemyScript : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        gameObject.transform.localScale = new Vector3(transform.localScale.x - 0.1f, transform.localScale.y - 0.1f, transform.localScale.z - 0.1f);
-        //Destroy(gameObject);
+        if (maxHealth > 0)
+        {
+            StartCoroutine(DamageFlash());
+            maxHealth -= 1;
+        }
+
+
+        if(maxHealth == 0)
+        {
+            material.DisableKeyword("_EMISSION");
+            Destroy(gameObject);
+        }
+    }
+
+    IEnumerator DamageFlash()
+    {
+        material.EnableKeyword("_EMISSION");
+        yield return new WaitForSeconds(flashTime);
+        material.DisableKeyword("_EMISSION");
     }
 }
