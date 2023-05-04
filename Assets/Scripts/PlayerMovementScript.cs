@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
+    [Header("Movement")]
     public CharacterController cc;
     public Animator player;
-
     public float playerSpeed = 5f;
-    public float gravity = -9.81f; //default gravity on earth
-    Vector3 velocity;
+
+    [Header("Enemy")]
+    public float maxPlayerHealth = 100f;
+    public GameObject enemy;
+    public Transform enemySpawn;
+    public Vector3 startingPoint;
+
+    private float gravity = -9.81f; //default gravity on earth
+    public Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        startingPoint = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -42,6 +49,20 @@ public class PlayerMovementScript : MonoBehaviour
         {
             velocity.y += gravity * Time.deltaTime;
             cc.Move(velocity);
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Enemy"))
+        {
+            maxPlayerHealth -= 1;
+
+            if (maxPlayerHealth <= 0)
+            {
+                maxPlayerHealth = 100f;
+                gameObject.transform.position = startingPoint;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ public class EnemyScript : MonoBehaviour
     public Material material;
 
     public float enemySpeed;
-    public float maxHealth = 100;
+    public float maxEnemyHealth = 100;
     public float flashTime = .15f;
 
     // Start is called before the first frame update
@@ -22,16 +22,17 @@ public class EnemyScript : MonoBehaviour
         transform.Translate(Vector3.forward * enemySpeed * Time.deltaTime);
     }
 
+
     private void OnParticleCollision(GameObject other)
     {
-        if (maxHealth > 0)
+        if (maxEnemyHealth > 0)
         {
             StartCoroutine(DamageFlash());
-            maxHealth -= 1;
+            maxEnemyHealth -= 1;
         }
 
 
-        if(maxHealth == 0)
+        if(maxEnemyHealth == 0)
         {
             material.DisableKeyword("_EMISSION");
             Destroy(gameObject);
