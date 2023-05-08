@@ -13,7 +13,7 @@ public class PlayerMovementScript : MonoBehaviour
     public float maxPlayerHealth = 100f;
     public GameObject enemy;
     public Transform enemySpawn;
-    public Vector3 startingPoint;
+    public Transform startingPoint;
 
     private float gravity = -9.81f; //default gravity on earth
     public Vector3 velocity;
@@ -21,7 +21,7 @@ public class PlayerMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startingPoint = gameObject.transform.position;
+        //startingPoint = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -52,6 +52,15 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "ExitBall")
+        {
+            print("Heippa");
+            Application.Quit();
+        }
+    }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.CompareTag("Enemy"))
@@ -61,7 +70,7 @@ public class PlayerMovementScript : MonoBehaviour
             if (maxPlayerHealth <= 0)
             {
                 maxPlayerHealth = 100f;
-                gameObject.transform.position = startingPoint;
+                gameObject.transform.position = startingPoint.position;
             }
         }
     }
