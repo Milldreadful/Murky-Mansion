@@ -30,6 +30,16 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void MoveObjects(GameObject obj)
+    {
+        obj.transform.Translate(new Vector3(-3, 0, 0));
+    }
+
+    public void ButtonOff(GameObject button)
+    {
+        button.SetActive(false);
+    }
+
     public void QuitGame()
     {
         Application.Quit();

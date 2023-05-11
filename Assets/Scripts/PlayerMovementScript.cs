@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovementScript : MonoBehaviour
 {
+    public PostProcessVolume PP;
+    private Vignette vignette;
+  
     [Header("Movement")]
     public CharacterController cc;
     public Animator player;
     public float playerSpeed = 5f;
 
-    [Header("Enemy")]
+    [Header("Fight")]
     public float maxPlayerHealth = 100f;
     public GameObject enemy;
     public Transform enemySpawn;
     public Transform startingPoint;
+    public float flashTime = 0.15f;
 
     private float gravity = -9.81f; //default gravity on earth
     public Vector3 velocity;
@@ -21,7 +26,7 @@ public class PlayerMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //startingPoint = gameObject.transform.position;
+        PP.profile.TryGetSettings(out vignette);
     }
 
     // Update is called once per frame
@@ -65,6 +70,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (hit.gameObject.CompareTag("Enemy"))
         {
+            StartCoroutine(DamageFlash());
             maxPlayerHealth -= 1;
 
             if (maxPlayerHealth <= 0)
@@ -73,5 +79,17 @@ public class PlayerMovementScript : MonoBehaviour
                 gameObject.transform.position = startingPoint.position;
             }
         }
+
+        if (hit.gameObject.name == "Ladder")
+        {
+            print("Kiipeä");
+        }
+    }
+
+    IEnumerator DamageFlash()
+    {
+        vignette.intensity.value = 0.5f;
+        yield return new WaitForSeconds(flashTime);
+        vignette.intensity.value = 0f;
     }
 }
