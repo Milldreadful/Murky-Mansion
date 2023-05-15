@@ -5,7 +5,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    public PostProcessVolume PP;
+    public PostProcessVolume PPVolume;
     private Vignette vignette;
   
     [Header("Movement")]
@@ -26,7 +26,7 @@ public class PlayerMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PP.profile.TryGetSettings(out vignette);
+        PPVolume.profile.TryGetSettings(out vignette);
     }
 
     // Update is called once per frame
@@ -79,17 +79,12 @@ public class PlayerMovementScript : MonoBehaviour
                 gameObject.transform.position = startingPoint.position;
             }
         }
-
-        if (hit.gameObject.name == "Ladder")
-        {
-            print("Kiipeä");
-        }
     }
 
     IEnumerator DamageFlash()
     {
-        vignette.intensity.value = 0.5f;
+        vignette.color.Override(Color.red);
         yield return new WaitForSeconds(flashTime);
-        vignette.intensity.value = 0f;
+        vignette.color.Override(Color.black);
     }
 }
