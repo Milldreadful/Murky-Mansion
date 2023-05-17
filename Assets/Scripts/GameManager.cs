@@ -10,9 +10,8 @@ public class GameManager : MonoBehaviour
     public Animator cameraAnimator;
     public Animator textAnimator;
     public PostProcessVolume PP;
-    private DepthOfField dof;
 
-    public GameObject enterButton;
+    public bool doorIsOpen = true ;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +26,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        PP.profile.TryGetSettings(out dof);
     }
 
     // Update is called once per frame
@@ -37,10 +34,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void MoveObjects(GameObject obj)
-    {
-        obj.transform.Translate(new Vector3(-3, 0, 0));
-    }
 
     public void ButtonOff(GameObject button)
     {

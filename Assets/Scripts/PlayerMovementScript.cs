@@ -7,6 +7,7 @@ public class PlayerMovementScript : MonoBehaviour
 {
     public PostProcessVolume PPVolume;
     private Vignette vignette;
+    public GameObject flashlight;
   
     [Header("Movement")]
     public CharacterController cc;
@@ -54,6 +55,11 @@ public class PlayerMovementScript : MonoBehaviour
         {
             velocity.y += gravity * Time.deltaTime;
             cc.Move(velocity);
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            flashlight.SetActive(!flashlight.activeSelf);
         }
     }
 

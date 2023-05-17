@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    public Material material;
-
     public float enemySpeed;
     public float maxEnemyHealth = 100;
     public float flashTime = .15f;
+
+    public ParticleSystem hitEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -27,22 +27,16 @@ public class EnemyScript : MonoBehaviour
     {
         if (maxEnemyHealth > 0)
         {
-            StartCoroutine(DamageFlash());
+            var emission = hitEffect.emission;
+            emission.enabled = true;
+            hitEffect.Play();
             maxEnemyHealth -= 1;
         }
 
 
         if(maxEnemyHealth == 0)
         {
-            material.DisableKeyword("_EMISSION");
             Destroy(gameObject);
         }
-    }
-
-    IEnumerator DamageFlash()
-    {
-        material.EnableKeyword("_EMISSION");
-        yield return new WaitForSeconds(flashTime);
-        material.DisableKeyword("_EMISSION");
     }
 }

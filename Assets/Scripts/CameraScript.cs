@@ -21,19 +21,20 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player != null)
+       if (Player != null)
         {
             transform.position = Vector3.Lerp(transform.position, Player.position + Offset, cameraSpeed * Time.deltaTime);
         }
     }
+
     private void LateUpdate()
     {
-        if (playerScript.cc.velocity.x > 0.1)
+        if (playerScript.cc.velocity.x > 0.1f)
         {
             Offset.x = cameraDistance;
         }
 
-        else if (playerScript.cc.velocity.x < -0.1)
+        else if (playerScript.cc.velocity.x < -0.1f)
         {
             Offset.x = -cameraDistance;
         }

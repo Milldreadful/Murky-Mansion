@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class InteractScript : MonoBehaviour
 {
-    public GameObject moveButton;
+    private bool doorIsOpen = false;
+    public GameObject openText;
+
+    private bool isInPlace = true;
+    public GameObject moveText;
+
+    public GameObject darkText;
+    public GameObject atticHatch;
 
     // Start is called before the first frame update
     void Start()
@@ -18,16 +25,55 @@ public class InteractScript : MonoBehaviour
         
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnTriggerStay(Collider other)
     {
-        if(hit.gameObject.CompareTag("Movable"))
+        if (other.gameObject.CompareTag("Movable"))
         {
-            moveButton.SetActive(true);
+            if (isInPlace)
+            {
+                moveText.SetActive(true);
+
+                if (Input.GetKey(KeyCode.Return))
+                {
+                    other.transform.Translate(new Vector3(-3, 0, 0));
+                    moveText.SetActive(false);
+                    isInPlace = false;
+                }
+            }
         }
 
-        if (hit.gameObject.CompareTag("Door"))
+        if (other.gameObject.CompareTag("Door"))
         {
-            hit.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            if (!doorIsOpen)
+            {
+                openText.SetActive(true);
+
+                if (Input.GetKey(KeyCode.Return))
+                {
+                    other.transform.eulerAngles = new Vector3(0, -100f, 0);
+                    openText.SetActive(false);
+                    Destroy(other.GetComponent<Collider>());
+                }
+            }
         }
+
+        if (other.gameObject.CompareTag("DarkTrigger"))
+        {
+            darkText.SetActive(true);
+
+            if(Input.GetButton("Fire1"))
+            {
+                atticHatch.transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        moveText.SetActive(false);
+        openText.SetActive(false);
+        darkText.SetActive(false);
+
+        Destroy(other.gameObject);
     }
 }
