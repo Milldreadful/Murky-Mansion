@@ -74,6 +74,9 @@ public class InteractScript : MonoBehaviour
         openText.SetActive(false);
         darkText.SetActive(false);
 
-        Destroy(other.gameObject);
+        if (other.gameObject.CompareTag("DarkTrigger"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

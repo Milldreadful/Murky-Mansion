@@ -28,6 +28,8 @@ public class SpawnTriggerScript : MonoBehaviour
             {
                 Instantiate(enemy, spawnPoint[i].position, spawnPoint[i].rotation);
             }
+
+            Destroy(gameObject);
         }
     }
 }
