@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    public Transform target;
     public float enemySpeed;
     public float maxEnemyHealth = 100;
     public float flashTime = .15f;
@@ -13,12 +14,13 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(target);
         transform.Translate(Vector3.forward * enemySpeed * Time.deltaTime);
     }
 

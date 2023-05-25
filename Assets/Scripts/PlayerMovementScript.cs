@@ -15,9 +15,9 @@ public class PlayerMovementScript : MonoBehaviour
     public float playerSpeed = 5f;
 
     [Header("Fight")]
-    public float maxPlayerHealth = 100f;
-    public GameObject enemy;
-    public Transform enemySpawn;
+    public HealthMeterScript healthMeter;
+    public int maxPlayerHealth;
+    public int currentHealth;
     public Transform startingPoint;
     public float flashTime = 0.15f;
 
@@ -28,11 +28,16 @@ public class PlayerMovementScript : MonoBehaviour
     void Start()
     {
         PPVolume.profile.TryGetSettings(out vignette);
+
+        currentHealth = maxPlayerHealth;
+        healthMeter.SetMaxHealth(maxPlayerHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthMeter.SetHealth(currentHealth);
+
         float horizontal = Input.GetAxis("Horizontal");
         float depth = Input.GetAxis("Depth");
 
@@ -77,11 +82,11 @@ public class PlayerMovementScript : MonoBehaviour
         if (hit.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(DamageFlash());
-            maxPlayerHealth -= 1;
+            currentHealth -= 1;
 
-            if (maxPlayerHealth <= 0)
+            if (currentHealth <= 0)
             {
-                maxPlayerHealth = 100f;
+                currentHealth = maxPlayerHealth;
                 gameObject.transform.position = startingPoint.position;
             }
         }

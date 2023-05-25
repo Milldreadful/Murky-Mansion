@@ -8,6 +8,7 @@ TagManager:
   - Movable
   - Door
   - DarkTrigger
+  - WCEnemy
   layers:
   - Default
   - TransparentFX

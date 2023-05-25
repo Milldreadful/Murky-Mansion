@@ -13,6 +13,8 @@ public class InteractScript : MonoBehaviour
     public GameObject darkText;
     public GameObject atticHatch;
 
+    public GameObject WClight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +67,11 @@ public class InteractScript : MonoBehaviour
             {
                 atticHatch.transform.eulerAngles = new Vector3(0, 0, 0);
             }
+        }
+
+        if (other.gameObject.CompareTag("WCEnemy"))
+        {
+            WClight.SetActive(true);
         }
     }
 
