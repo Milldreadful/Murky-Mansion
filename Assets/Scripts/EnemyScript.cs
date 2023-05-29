@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour
 {
     public Transform target;
     public float enemySpeed;
-    public float maxEnemyHealth = 100;
+    public float maxEnemyHealth = 30;
     public float flashTime = .15f;
 
     public ParticleSystem hitEffect;
@@ -25,7 +25,23 @@ public class EnemyScript : MonoBehaviour
     }
 
 
-    private void OnParticleCollision(GameObject other)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Ammo") && maxEnemyHealth > 0)
+        {
+            var emission = hitEffect.emission;
+            emission.enabled = true;
+            hitEffect.Play();
+            maxEnemyHealth -= 10;
+        }
+
+
+        if (maxEnemyHealth == 0)
+        {
+            Destroy(gameObject, 0.3f);
+        }
+    }
+    /* private void OnParticleCollision(GameObject other)
     {
         if (maxEnemyHealth > 0)
         {
@@ -40,5 +56,5 @@ public class EnemyScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    } */
 }

@@ -5,9 +5,14 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovementScript : MonoBehaviour
 {
+    public GameObject flashlight;
+
+    [Header("Effects")]
     public PostProcessVolume PPVolume;
     private Vignette vignette;
-    public GameObject flashlight;
+    public AudioSource stepAudio;
+    public float minVolume;
+    public float maxVolume;
   
     [Header("Movement")]
     public CharacterController cc;
@@ -49,11 +54,13 @@ public class PlayerMovementScript : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(move); //rotates the player to face moving direction
             player.SetBool("IsMoving", true);
+            stepAudio.volume = maxVolume;
         }
 
         else
         {
             player.SetBool("IsMoving", false);
+            stepAudio.volume = minVolume;
         }
 
         if (!cc.isGrounded)
@@ -68,16 +75,28 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.name == "ExitBall")
         {
             print("Heippa");
             Application.Quit();
         }
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(DamageFlash());
+            currentHealth -= 10;
+
+            if (currentHealth <= 0)
+            {
+                currentHealth = maxPlayerHealth;
+                gameObject.transform.position = startingPoint.position;
+            }
+        }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+   /* private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.CompareTag("Enemy"))
         {
@@ -90,7 +109,7 @@ public class PlayerMovementScript : MonoBehaviour
                 gameObject.transform.position = startingPoint.position;
             }
         }
-    }
+    } */
 
     IEnumerator DamageFlash()
     {

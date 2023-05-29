@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class InteractScript : MonoBehaviour
 {
+    [Header("Doors")]
     private bool doorIsOpen = false;
     public GameObject openText;
+    public AudioSource doorCreak;
 
+    [Header("Movable")]
     private bool isInPlace = true;
     public GameObject moveText;
 
@@ -15,17 +18,6 @@ public class InteractScript : MonoBehaviour
 
     public GameObject WClight;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -53,11 +45,13 @@ public class InteractScript : MonoBehaviour
                 if (Input.GetKey(KeyCode.Return))
                 {
                     other.transform.eulerAngles = new Vector3(0, -100f, 0);
+                    doorCreak.Play();
                     openText.SetActive(false);
                     Destroy(other.GetComponent<Collider>());
                 }
             }
         }
+
 
         if (other.gameObject.CompareTag("DarkTrigger"))
         {

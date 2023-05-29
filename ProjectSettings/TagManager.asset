@@ -9,6 +9,8 @@ TagManager:
   - Door
   - DarkTrigger
   - WCEnemy
+  - Faucet
+  - Ammo
   layers:
   - Default
   - TransparentFX

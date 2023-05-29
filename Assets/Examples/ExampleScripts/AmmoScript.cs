@@ -17,13 +17,4 @@ public class AmmoScript : MonoBehaviour
     {
         transform.Translate(Vector3.forward * ammoSpeed * Time.deltaTime);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-        }
-    }
 }
