@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class ShootingScript : MonoBehaviour
 {
-    public WaterMeterScript waterMeter;
+    [Header("Water Meter")]
+    public Animator waterMeterAnim;
+    public WaterMeterScript waterMeterScript;
     public int currentWater;
     public int maxWater = 80;
 
+    [Header("Watergun")]
     public GameObject bullet;
     public Transform guntip;
     public ParticleSystem waterSpray;
     public AudioSource watergun;
     public AudioClip sprayAudio;
 
+    public AudioSource faucet;
+
     // Start is called before the first frame update
     void Start()
     {
         currentWater = maxWater;
-        waterMeter.SetMaxWater(maxWater);
+        waterMeterScript.SetMaxWater(maxWater);
     }
 
     // Update is called once per frame
     void Update()
     {
-        waterMeter.SetWater(currentWater);
+        waterMeterScript.SetWater(currentWater);
 
         if(Input.GetButtonDown("Jump") && currentWater > 0)
         {
@@ -37,11 +42,13 @@ public class ShootingScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Faucet"))
         {
             currentWater = maxWater;
+            faucet.Play();
+            waterMeterAnim.SetTrigger("FillUp");
         }
     }
 }

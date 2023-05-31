@@ -5,6 +5,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovementScript : MonoBehaviour
 {
+    public GameManager gm;
     public GameObject flashlight;
 
     [Header("Effects")]
@@ -90,8 +91,7 @@ public class PlayerMovementScript : MonoBehaviour
 
             if (currentHealth <= 0)
             {
-                currentHealth = maxPlayerHealth;
-                gameObject.transform.position = startingPoint.position;
+                gm.RestartLevel();
             }
         }
     }

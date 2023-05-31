@@ -11,6 +11,7 @@ TagManager:
   - WCEnemy
   - Faucet
   - Ammo
+  - Plant
   layers:
   - Default
   - TransparentFX

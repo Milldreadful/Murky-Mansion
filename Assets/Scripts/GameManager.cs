@@ -29,12 +29,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     public void ButtonOff(GameObject button)
     {
@@ -47,6 +41,11 @@ public class GameManager : MonoBehaviour
         cameraAnimator.SetTrigger("EnterGame");
         StartCoroutine(LoadLevel(1));
         //ButtonOff(enterButton);
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()

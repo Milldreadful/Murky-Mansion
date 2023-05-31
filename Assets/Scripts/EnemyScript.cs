@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    public Animator enemyAnim;
     public Transform target;
     public float enemySpeed;
     public float maxEnemyHealth = 30;
@@ -38,23 +39,8 @@ public class EnemyScript : MonoBehaviour
 
         if (maxEnemyHealth == 0)
         {
-            Destroy(gameObject, 0.3f);
+            enemyAnim.SetTrigger("Death");
+            Destroy(gameObject, 1f);
         }
     }
-    /* private void OnParticleCollision(GameObject other)
-    {
-        if (maxEnemyHealth > 0)
-        {
-            var emission = hitEffect.emission;
-            emission.enabled = true;
-            hitEffect.Play();
-            maxEnemyHealth -= 1;
-        }
-
-
-        if(maxEnemyHealth == 0)
-        {
-            Destroy(gameObject);
-        }
-    } */
 }

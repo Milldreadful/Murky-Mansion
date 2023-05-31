@@ -13,9 +13,12 @@ public class InteractScript : MonoBehaviour
     private bool isInPlace = true;
     public GameObject moveText;
 
+    [Header("Easter Egg")]
+    public GameObject waterPlantText;
+
+    [Header("Lights")]
     public GameObject darkText;
     public GameObject atticHatch;
-
     public GameObject WClight;
 
 
@@ -67,6 +70,11 @@ public class InteractScript : MonoBehaviour
         {
             WClight.SetActive(true);
         }
+
+        if(other.gameObject.CompareTag("Plant"))
+        {
+            waterPlantText.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -74,6 +82,7 @@ public class InteractScript : MonoBehaviour
         moveText.SetActive(false);
         openText.SetActive(false);
         darkText.SetActive(false);
+        waterPlantText.SetActive(false);
 
         if (other.gameObject.CompareTag("DarkTrigger"))
         {
