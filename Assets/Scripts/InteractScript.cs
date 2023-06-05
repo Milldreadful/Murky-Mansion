@@ -21,6 +21,11 @@ public class InteractScript : MonoBehaviour
     public GameObject atticHatch;
     public GameObject WClight;
 
+    [Header("")]
+    public GameObject bossEnemy;
+    public GameObject openHatchText;
+    private bool hatchIsOpen = false;
+
 
     private void OnTriggerStay(Collider other)
     {
@@ -32,7 +37,7 @@ public class InteractScript : MonoBehaviour
 
                 if (Input.GetKey(KeyCode.Return))
                 {
-                    other.transform.Translate(new Vector3(-3, 0, 0));
+                    other.transform.Translate(new Vector3(-1.5f, 0, 0));
                     moveText.SetActive(false);
                     isInPlace = false;
                 }
@@ -55,6 +60,19 @@ public class InteractScript : MonoBehaviour
             }
         }
 
+        if (other.gameObject.CompareTag("Hatch") && !hatchIsOpen)
+        {
+            openHatchText.SetActive(true);
+
+            if (Input.GetKey(KeyCode.Return))
+            {
+                atticHatch.transform.eulerAngles = new Vector3(70, 0, 0);
+                hatchIsOpen = true;
+                doorCreak.Play();
+                openHatchText.SetActive(false);
+            }
+        }
+
 
         if (other.gameObject.CompareTag("DarkTrigger"))
         {
@@ -63,6 +81,8 @@ public class InteractScript : MonoBehaviour
             if(Input.GetButton("Fire1"))
             {
                 atticHatch.transform.eulerAngles = new Vector3(0, 0, 0);
+                doorCreak.Play();
+                hatchIsOpen = false;
             }
         }
 
@@ -86,6 +106,7 @@ public class InteractScript : MonoBehaviour
 
         if (other.gameObject.CompareTag("DarkTrigger"))
         {
+            Instantiate(bossEnemy);
             Destroy(other.gameObject);
         }
     }

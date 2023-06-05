@@ -7,12 +7,8 @@ using UnityEngine.Rendering.PostProcessing;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
-    public Animator lightAnimator;
     public Animator cameraAnimator;
     public Animator textAnimator;
-    public PostProcessVolume PP;
-
-    public bool doorIsOpen = true ;
 
     // Start is called before the first frame update
     void Start()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    public AudioSource enemyAudio;
+    public AudioClip deathGrowl;
     public Animator enemyAnim;
     public Transform target;
     public float enemySpeed;
@@ -39,8 +41,11 @@ public class EnemyScript : MonoBehaviour
 
         if (maxEnemyHealth == 0)
         {
+            enemyAudio.PlayOneShot(deathGrowl);
             enemyAnim.SetTrigger("Death");
+            Destroy(gameObject.GetComponent<Collider>());
             Destroy(gameObject, 1f);
+            
         }
     }
 }

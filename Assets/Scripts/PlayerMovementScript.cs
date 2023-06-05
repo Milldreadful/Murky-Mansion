@@ -24,7 +24,6 @@ public class PlayerMovementScript : MonoBehaviour
     public HealthMeterScript healthMeter;
     public int maxPlayerHealth;
     public int currentHealth;
-    public Transform startingPoint;
     public float flashTime = 0.15f;
 
     private float gravity = -9.81f; //default gravity on earth
@@ -84,7 +83,7 @@ public class PlayerMovementScript : MonoBehaviour
             Application.Quit();
         }
 
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss"))
         {
             StartCoroutine(DamageFlash());
             currentHealth -= 10;

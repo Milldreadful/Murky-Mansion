@@ -12,6 +12,9 @@ TagManager:
   - Faucet
   - Ammo
   - Plant
+  - BossTarget
+  - Boss
+  - Hatch
   layers:
   - Default
   - TransparentFX
