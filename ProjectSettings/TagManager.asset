@@ -15,6 +15,7 @@ TagManager:
   - BossTarget
   - Boss
   - Hatch
+  - Wall
   layers:
   - Default
   - TransparentFX

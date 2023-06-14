@@ -9,11 +9,12 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManager;
     public Animator cameraAnimator;
     public Animator textAnimator;
+    public Animator fadeScreen;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (gameManager == null)
+        /*if (gameManager == null)
         {
             DontDestroyOnLoad(gameObject);
             gameManager = this;
@@ -22,26 +23,22 @@ public class GameManager : MonoBehaviour
         else if (gameManager != this)
         {
             Destroy(gameObject);
-        }
+        }*/
     }
 
-
-    public void ButtonOff(GameObject button)
-    {
-        button.SetActive(false);
-    }
 
     public void EnterGame()
     {
         textAnimator.SetTrigger("PressEnter");
         cameraAnimator.SetTrigger("EnterGame");
-        StartCoroutine(LoadLevel(1));
-        //ButtonOff(enterButton);
+        fadeScreen.SetTrigger("FadeOut");
+        StartCoroutine(LoadLevel(1, 3.5f));
     }
 
-    public void RestartLevel()
+    public void MoveToLevel(int level)
     {
-        SceneManager.LoadScene(1);
+        fadeScreen.SetTrigger("FadeOut");
+        StartCoroutine(LoadLevel(level, 3f));
     }
 
     public void QuitGame()
@@ -49,9 +46,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public IEnumerator LoadLevel(int levelNum)
+    public IEnumerator LoadLevel(int levelNum, float waitTime)
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene(levelNum);
     }
 }

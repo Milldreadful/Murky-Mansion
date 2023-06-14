@@ -7,6 +7,7 @@ public class PlayerMovementScript : MonoBehaviour
 {
     public GameManager gm;
     public GameObject flashlight;
+    public GameObject instructions;
 
     [Header("Effects")]
     public PostProcessVolume PPVolume;
@@ -18,7 +19,9 @@ public class PlayerMovementScript : MonoBehaviour
     [Header("Movement")]
     public CharacterController cc;
     public Animator player;
-    public float playerSpeed = 5f;
+    public float playerSpeed = 5f; 
+    private float gravity = -9.81f; //default gravity on earth
+    private Vector3 velocity;
 
     [Header("Fight")]
     public HealthMeterScript healthMeter;
@@ -26,8 +29,7 @@ public class PlayerMovementScript : MonoBehaviour
     public int currentHealth;
     public float flashTime = 0.15f;
 
-    private float gravity = -9.81f; //default gravity on earth
-    public Vector3 velocity;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,8 @@ public class PlayerMovementScript : MonoBehaviour
 
         currentHealth = maxPlayerHealth;
         healthMeter.SetMaxHealth(maxPlayerHealth);
+
+        StartCoroutine(InstructionsOff());
     }
 
     // Update is called once per frame
@@ -77,43 +81,29 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.name == "ExitBall")
-        {
-            print("Heippa");
-            Application.Quit();
-        }
-
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss"))
         {
-            StartCoroutine(DamageFlash());
+            StartCoroutine(DamageFlash(0.15f));
             currentHealth -= 10;
 
             if (currentHealth <= 0)
             {
-                gm.RestartLevel();
+                vignette.color.Override(Color.red);
+                gm.MoveToLevel(1);
             }
         }
     }
 
-   /* private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.CompareTag("Enemy"))
-        {
-            StartCoroutine(DamageFlash());
-            currentHealth -= 1;
-
-            if (currentHealth <= 0)
-            {
-                currentHealth = maxPlayerHealth;
-                gameObject.transform.position = startingPoint.position;
-            }
-        }
-    } */
-
-    IEnumerator DamageFlash()
+    IEnumerator DamageFlash(float flashTime)
     {
         vignette.color.Override(Color.red);
         yield return new WaitForSeconds(flashTime);
         vignette.color.Override(Color.black);
+    }
+
+    IEnumerator InstructionsOff()
+    {
+        yield return new WaitForSeconds(10f);
+        instructions.SetActive(false);
     }
 }
