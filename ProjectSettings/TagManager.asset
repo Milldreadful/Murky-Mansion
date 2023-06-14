@@ -16,6 +16,7 @@ TagManager:
   - Boss
   - Hatch
   - Wall
+  - Flashlight
   layers:
   - Default
   - TransparentFX

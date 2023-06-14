@@ -21,11 +21,24 @@ public class InteractScript : MonoBehaviour
     public GameObject atticHatch;
     public GameObject WClight;
 
-    [Header("")]
+    public GameObject flashlight;
+    public GameObject foundFlashlightText;
+
+    [Header("Attic")]
+    public Animator cameraPullback;
     public GameObject bossEnemy;
     public GameObject openHatchText;
     private bool hatchIsOpen = false;
+    private bool flashlightFound = false;
 
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Fire1") && flashlightFound)
+        {
+            flashlight.SetActive(!flashlight.activeSelf);
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -74,7 +87,7 @@ public class InteractScript : MonoBehaviour
         }
 
 
-        if (other.gameObject.CompareTag("DarkTrigger"))
+        if (other.gameObject.CompareTag("DarkTrigger") && !flashlightFound)
         {
             darkText.SetActive(true);
 
@@ -95,6 +108,12 @@ public class InteractScript : MonoBehaviour
         {
             waterPlantText.SetActive(true);
         }
+
+        if (other.gameObject.CompareTag("Flashlight"))
+        {
+            foundFlashlightText.SetActive(true);
+            flashlightFound = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -104,10 +123,18 @@ public class InteractScript : MonoBehaviour
         darkText.SetActive(false);
         waterPlantText.SetActive(false);
 
-        if (other.gameObject.CompareTag("DarkTrigger"))
+        if (other.gameObject.CompareTag("DarkTrigger") && flashlightFound)
         {
             Instantiate(bossEnemy);
+            cameraPullback.SetTrigger("Boss");
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.CompareTag("Flashlight"))
+        {
+            foundFlashlightText.SetActive(false);
+            Destroy(other.gameObject);
+        }
+
     }
 }

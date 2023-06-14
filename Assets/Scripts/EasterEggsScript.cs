@@ -8,7 +8,7 @@ public class EasterEggsScript : MonoBehaviour
     public GameObject textTrigger;
     public GameObject waterText;
 
-    public Renderer myModel;
+    public Renderer smudge;
 
 
     private void OnParticleCollision(GameObject other)
@@ -28,8 +28,8 @@ public class EasterEggsScript : MonoBehaviour
 
     public void FadeMaterial()
     {
-        Color color = myModel.material.color;
+        Color color = smudge.material.color;
         color.a -= 0.05f;
-        myModel.material.color = color;
+        smudge.material.color = color;
     }
 }

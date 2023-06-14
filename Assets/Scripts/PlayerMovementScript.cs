@@ -6,18 +6,17 @@ using UnityEngine.Rendering.PostProcessing;
 public class PlayerMovementScript : MonoBehaviour
 {
     public GameManager gm;
-    public GameObject flashlight;
     public GameObject instructions;
 
     [Header("Effects")]
     public PostProcessVolume PPVolume;
     private Vignette vignette;
-    public AudioSource stepAudio;
-    public float minVolume;
-    public float maxVolume;
   
     [Header("Movement")]
     public CharacterController cc;
+    public AudioSource stepAudio;
+    public float minVolume;
+    public float maxVolume;
     public Animator player;
     public float playerSpeed = 5f; 
     private float gravity = -9.81f; //default gravity on earth
@@ -28,7 +27,8 @@ public class PlayerMovementScript : MonoBehaviour
     public int maxPlayerHealth;
     public int currentHealth;
     public float flashTime = 0.15f;
-
+    public AudioSource deathAudio;
+    public AudioClip deathScream;
    
 
     // Start is called before the first frame update
@@ -72,23 +72,24 @@ public class PlayerMovementScript : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
             cc.Move(velocity);
         }
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            flashlight.SetActive(!flashlight.activeSelf);
-        }
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss"))
         {
-            StartCoroutine(DamageFlash(0.15f));
-            currentHealth -= 10;
+            if(currentHealth > 0)
+            {
+                StartCoroutine(DamageFlash(0.15f));
+                currentHealth -= 10;
+            }
 
             if (currentHealth <= 0)
             {
+                deathAudio.PlayOneShot(deathScream);
                 vignette.color.Override(Color.red);
+                vignette.intensity.Override(1f);
+                vignette.roundness.Override(1f);
                 gm.MoveToLevel(1);
             }
         }

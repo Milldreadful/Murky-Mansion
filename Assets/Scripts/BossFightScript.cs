@@ -43,7 +43,7 @@ public class BossFightScript : MonoBehaviour
             hitEffect.Play();
         }
 
-        if (maxBossHealth <= 0)
+        else if (other.gameObject.CompareTag("Ammo") && maxBossHealth <= 0)
         {
             deathExplosion.Play();
             bossDeath.Play(); 
