@@ -14,16 +14,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*if (gameManager == null)
+        if (SceneManager.GetActiveScene().buildIndex == 2)
         {
-            DontDestroyOnLoad(gameObject);
-            gameManager = this;
+            StartCoroutine(YouWinScene());
         }
-
-        else if (gameManager != this)
-        {
-            Destroy(gameObject);
-        }*/
     }
 
 
@@ -50,6 +44,14 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene(levelNum);
+    }
+
+    public IEnumerator YouWinScene()
+    {
+        yield return new WaitForSeconds(4f);
+        fadeScreen.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(3);
     }
 }
 

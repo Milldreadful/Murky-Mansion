@@ -3,7 +3,27 @@ guid: 708e60926820206489ea863c3da4f996
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GunGrip
+    second: {fileID: 2100000, guid: 6b1238ec08d38ee478d89e718955c18b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GunHandle
+    second: {fileID: 2100000, guid: 0ba94e6f332badd4dbf976fdb611bb7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GunTank
+    second: {fileID: 2100000, guid: 905c34a922a40b040a04691337e1d6da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gunstock
+    second: {fileID: 2100000, guid: aaaeccf849ed2224ea018dacb533fa2e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

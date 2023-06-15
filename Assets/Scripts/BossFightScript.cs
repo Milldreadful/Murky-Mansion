@@ -13,6 +13,7 @@ public class BossFightScript : MonoBehaviour
     public AudioSource bossDeath;
     public ParticleSystem hitEffect;
     public ParticleSystem deathExplosion;
+    public Animator deathAnim;
 
     [Header("Energy Meter")]
     public BossHealthMeterScript bossHealthMeter;
@@ -24,6 +25,9 @@ public class BossFightScript : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("BossTarget").transform;
+        fadeScreen = GameObject.Find("FadeScreen").GetComponent<Animator>();
+        bossHealthMeter = GameObject.Find("BossHealthMeter").GetComponent<BossHealthMeterScript>();
+
         currentHealth = maxBossHealth;
         bossHealthMeter.SetMaxHealth(maxBossHealth);
     }
@@ -55,12 +59,13 @@ public class BossFightScript : MonoBehaviour
 
         else if (other.gameObject.CompareTag("Ammo") && currentHealth <= 0)
         {
+            deathAnim.SetTrigger("Death");
             deathExplosion.Play();
             bossDeath.Play(); 
-            Destroy(gameObject.transform.GetChild(0).gameObject);
+            Destroy(gameObject.transform.GetChild(0).gameObject, 1.4f);
             Destroy(gameObject.GetComponent<Collider>());
             healthMeter.SetActive(false);
-            MoveToLevel(2);
+            StartCoroutine(LoadLevel(2, 3f));
         }
     }
 
@@ -73,6 +78,8 @@ public class BossFightScript : MonoBehaviour
     public IEnumerator LoadLevel(int levelNum, float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        fadeScreen.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(levelNum);
     }
 

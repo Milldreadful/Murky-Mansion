@@ -203,8 +203,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284835173
-  m_fontColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+    rgba: 4288406771
+  m_fontColor: {r: 0.9528302, g: 0.89492273, b: 0.6067551, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -292,6 +292,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1210920092}
     m_Modifications:
+    - target: {fileID: 1887135430355076517, guid: ecda0400f845c794c866ae39fcbb08d3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aaaeccf849ed2224ea018dacb533fa2e, type: 2}
+    - target: {fileID: 1887135430355076517, guid: ecda0400f845c794c866ae39fcbb08d3, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 905c34a922a40b040a04691337e1d6da, type: 2}
+    - target: {fileID: 1887135430355076517, guid: ecda0400f845c794c866ae39fcbb08d3, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b1238ec08d38ee478d89e718955c18b, type: 2}
+    - target: {fileID: 1887135430355076517, guid: ecda0400f845c794c866ae39fcbb08d3, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0ba94e6f332badd4dbf976fdb611bb7c, type: 2}
     - target: {fileID: 3713537130863984805, guid: ecda0400f845c794c866ae39fcbb08d3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -536,7 +552,31 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CREDITS
+  m_text: 'CREDITS
+
+
+    freesound.org/
+
+
+    mateozugi19
+
+    Timbre
+
+    strangehorizon
+
+    Mirors_
+
+    caylynschell
+
+    cylon8472
+
+    Darsycho
+
+    Leadstarson
+
+    Batuhan
+
+    Yudena'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dff2459abd532eb478ccc4b9ea1731fc, type: 2}
   m_sharedMaterial: {fileID: -2160625729590000113, guid: dff2459abd532eb478ccc4b9ea1731fc, type: 2}
@@ -545,8 +585,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4290822339
-  m_fontColor: {r: 0.764151, g: 0.7533375, b: 0.7533375, a: 1}
+    rgba: 4289195505
+  m_fontColor: {r: 0.9433962, g: 0.92777175, b: 0.6541474, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -563,13 +603,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.7
-  m_fontSizeBase: 19.7
+  m_fontSize: 16.5
+  m_fontSizeBase: 16.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 32
+  m_fontStyle: 33
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1191,7 +1231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraAnimator: {fileID: 1664542542}
   textAnimator: {fileID: 0}
-  fadeScreen: {fileID: 991336040238261303, guid: e05eebbfde4969b4eabda5f9c3b9eade, type: 3}
+  fadeScreen: {fileID: 1775731222}
 --- !u!4 &1765491260
 Transform:
   m_ObjectHideFlags: 0
@@ -1210,6 +1250,11 @@ Transform:
 --- !u!224 &1775731221 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 991336040238261302, guid: e05eebbfde4969b4eabda5f9c3b9eade, type: 3}
+  m_PrefabInstance: {fileID: 839880595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1775731222 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 991336040238261303, guid: e05eebbfde4969b4eabda5f9c3b9eade, type: 3}
   m_PrefabInstance: {fileID: 839880595}
   m_PrefabAsset: {fileID: 0}
 --- !u!64 &1801526367

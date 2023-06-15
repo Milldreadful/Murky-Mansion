@@ -7,7 +7,7 @@ public class MusicPlayerScript : MonoBehaviour
 {
     private MusicPlayerScript me;
 
-    // Start is called before the first frame update
+   
     void Awake()
     {
         if (me == null)

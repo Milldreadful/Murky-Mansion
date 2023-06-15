@@ -4754,11 +4754,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6f82aa71df329d4c9dcd535a29d1959, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.72
+      value: 10.84
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6f82aa71df329d4c9dcd535a29d1959, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.01
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6f82aa71df329d4c9dcd535a29d1959, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6657,9 +6657,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198425678}
-  m_LocalRotation: {x: 0.016841201, y: -0, z: -0, w: 0.9998582}
-  m_LocalPosition: {x: 10.03, y: 2.53, z: 6.52}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.016841201, y: -0, z: -0, w: 0.99985826}
+  m_LocalPosition: {x: 10.030004, y: 2.5299997, z: 6.5199995}
+  m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -6694,7 +6694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1201201647
 Light:
   m_ObjectHideFlags: 0
@@ -6707,7 +6707,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.87
+  m_Intensity: 0.36
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7284,7 +7284,7 @@ MonoBehaviour:
   leaves: {fileID: 8489503687902176388}
   textTrigger: {fileID: 1723930106}
   waterText: {fileID: 1786404277}
-  smudge: {fileID: 0}
+  smudge: {fileID: 610207889}
 --- !u!65 &1305940026
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9390,6 +9390,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!95 &1674985821 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 991336040238261303, guid: e05eebbfde4969b4eabda5f9c3b9eade, type: 3}
+  m_PrefabInstance: {fileID: 991336040039480968}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1689144038
 GameObject:
   m_ObjectHideFlags: 0
@@ -13618,6 +13623,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1822435031412485308, guid: 57dca5c2824f6164989e07c043bb0755, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.42549
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822435031412485308, guid: 57dca5c2824f6164989e07c043bb0755, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.42549
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822435031412485308, guid: 57dca5c2824f6164989e07c043bb0755, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.42549
+      objectReference: {fileID: 0}
     - target: {fileID: 2349993444621018861, guid: 57dca5c2824f6164989e07c043bb0755, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13700,6 +13717,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2349993444621018861, guid: 57dca5c2824f6164989e07c043bb0755, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534535771072457473, guid: 57dca5c2824f6164989e07c043bb0755, type: 3}
+      propertyPath: m_Value
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534535771072457473, guid: 57dca5c2824f6164989e07c043bb0755, type: 3}
+      propertyPath: m_WholeNumbers
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8430443175848523635, guid: 57dca5c2824f6164989e07c043bb0755, type: 3}
@@ -17853,7 +17878,7 @@ PrefabInstance:
     - target: {fileID: 4130262212185853196, guid: f4570b089f2b2fe4498bfde2cd57184c, type: 3}
       propertyPath: fadeScreen
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1674985821}
     - target: {fileID: 4130262212185853196, guid: f4570b089f2b2fe4498bfde2cd57184c, type: 3}
       propertyPath: cameraAnimator
       value: 

@@ -53,11 +53,12 @@ MonoBehaviour:
   fadeScreen: {fileID: 991336040238261303, guid: e05eebbfde4969b4eabda5f9c3b9eade, type: 3}
   target: {fileID: 0}
   enemySpeed: 1
-  maxBossHealth: 30
   bossDeath: {fileID: 1751471004842851883}
   hitEffect: {fileID: 3327738432706612350}
   deathExplosion: {fileID: 3283389555548795889}
+  deathAnim: {fileID: 4175844680664060298}
   bossHealthMeter: {fileID: 7902448820715657089, guid: 57dca5c2824f6164989e07c043bb0755, type: 3}
+  maxBossHealth: 300
   currentHealth: 0
   healthMeter: {fileID: 8430443175848523635, guid: 57dca5c2824f6164989e07c043bb0755, type: 3}
 --- !u!136 &5901205098644748690
@@ -326,7 +327,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 1.4
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -5152,6 +5153,7 @@ GameObject:
   - component: {fileID: 7663356555532465759}
   - component: {fileID: 5220636140981040673}
   - component: {fileID: 6625515607382037752}
+  - component: {fileID: 4175844680664060298}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -5325,6 +5327,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &4175844680664060298
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3340484513823833398}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f453e5b1f1ccbe442a364dff00ff603e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &3789533646861014219
 GameObject:
   m_ObjectHideFlags: 0
@@ -10334,7 +10356,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 1.4
     minScalar: 0
     maxCurve:
       serializedVersion: 2

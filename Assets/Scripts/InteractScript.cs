@@ -29,7 +29,7 @@ public class InteractScript : MonoBehaviour
     public GameObject bossEnemy;
     public GameObject openHatchText;
     private bool hatchIsOpen = false;
-    private bool flashlightFound = true;
+    private bool flashlightFound = false;
     public GameObject bossHealthMeter;
 
 
@@ -91,13 +91,6 @@ public class InteractScript : MonoBehaviour
         if (other.gameObject.CompareTag("DarkTrigger") && !flashlightFound)
         {
             darkText.SetActive(true);
-
-            if(Input.GetButton("Fire1"))
-            {
-                atticHatch.transform.eulerAngles = new Vector3(0, 0, 0);
-                doorCreak.Play();
-                hatchIsOpen = false;
-            }
         }
 
         if (other.gameObject.CompareTag("WCEnemy"))
@@ -129,6 +122,9 @@ public class InteractScript : MonoBehaviour
             Instantiate(bossEnemy);
             bossHealthMeter.SetActive(true);
             cameraPullback.SetTrigger("Boss");
+            atticHatch.transform.eulerAngles = new Vector3(0, 0, 0);
+            doorCreak.Play();
+            hatchIsOpen = false;
             Destroy(other.gameObject);
         }
 
