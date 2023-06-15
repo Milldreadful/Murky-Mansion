@@ -53,7 +53,7 @@ MonoBehaviour:
   fadeScreen: {fileID: 991336040238261303, guid: e05eebbfde4969b4eabda5f9c3b9eade, type: 3}
   target: {fileID: 0}
   enemySpeed: 1
-  maxBossHealth: 50
+  maxBossHealth: 30
   bossDeath: {fileID: 1751471004842851883}
   hitEffect: {fileID: 3327738432706612350}
   deathExplosion: {fileID: 3283389555548795889}

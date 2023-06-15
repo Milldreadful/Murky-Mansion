@@ -29,7 +29,7 @@ public class InteractScript : MonoBehaviour
     public GameObject bossEnemy;
     public GameObject openHatchText;
     private bool hatchIsOpen = false;
-    private bool flashlightFound = false;
+    private bool flashlightFound = true;
     public GameObject bossHealthMeter;
 
 

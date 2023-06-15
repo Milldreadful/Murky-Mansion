@@ -10,13 +10,13 @@ public class BossFightScript : MonoBehaviour
     [Header("BossFight")]
     public Transform target;
     public float enemySpeed = 1;
-    public int maxBossHealth = 100;
     public AudioSource bossDeath;
     public ParticleSystem hitEffect;
     public ParticleSystem deathExplosion;
 
     [Header("Energy Meter")]
     public BossHealthMeterScript bossHealthMeter;
+    public int maxBossHealth = 30;
     public int currentHealth;
     public GameObject healthMeter;
 
@@ -45,7 +45,7 @@ public class BossFightScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Ammo") && maxBossHealth > 0)
+        if (other.gameObject.CompareTag("Ammo") && currentHealth > 0)
         {
             currentHealth -= 10;
             var emission = hitEffect.emission;
@@ -53,7 +53,7 @@ public class BossFightScript : MonoBehaviour
             hitEffect.Play();
         }
 
-        else if (other.gameObject.CompareTag("Ammo") && maxBossHealth <= 0)
+        else if (other.gameObject.CompareTag("Ammo") && currentHealth <= 0)
         {
             deathExplosion.Play();
             bossDeath.Play(); 
