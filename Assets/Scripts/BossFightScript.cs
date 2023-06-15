@@ -7,17 +7,25 @@ public class BossFightScript : MonoBehaviour
 {
     public Animator fadeScreen;
 
+    [Header("BossFight")]
     public Transform target;
     public float enemySpeed = 1;
-    public float maxBossHealth = 100f;
+    public int maxBossHealth = 100;
     public AudioSource bossDeath;
     public ParticleSystem hitEffect;
     public ParticleSystem deathExplosion;
+
+    [Header("Energy Meter")]
+    public BossHealthMeterScript bossHealthMeter;
+    public int currentHealth;
+    public GameObject healthMeter;
 
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("BossTarget").transform;
+        currentHealth = maxBossHealth;
+        bossHealthMeter.SetMaxHealth(maxBossHealth);
     }
 
     // Update is called once per frame
@@ -30,6 +38,8 @@ public class BossFightScript : MonoBehaviour
         {
             bossDeath.volume = Mathf.Lerp(bossDeath.volume, 0, 1 * Time.deltaTime);
         }
+
+        bossHealthMeter.SetHealth(currentHealth);
     }
 
 
@@ -37,7 +47,7 @@ public class BossFightScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ammo") && maxBossHealth > 0)
         {
-            maxBossHealth -= 10;
+            currentHealth -= 10;
             var emission = hitEffect.emission;
             emission.enabled = true;
             hitEffect.Play();
@@ -49,6 +59,7 @@ public class BossFightScript : MonoBehaviour
             bossDeath.Play(); 
             Destroy(gameObject.transform.GetChild(0).gameObject);
             Destroy(gameObject.GetComponent<Collider>());
+            healthMeter.SetActive(false);
             MoveToLevel(2);
         }
     }

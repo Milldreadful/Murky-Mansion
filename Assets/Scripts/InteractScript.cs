@@ -30,6 +30,7 @@ public class InteractScript : MonoBehaviour
     public GameObject openHatchText;
     private bool hatchIsOpen = false;
     private bool flashlightFound = false;
+    public GameObject bossHealthMeter;
 
 
     private void Update()
@@ -126,6 +127,7 @@ public class InteractScript : MonoBehaviour
         if (other.gameObject.CompareTag("DarkTrigger") && flashlightFound)
         {
             Instantiate(bossEnemy);
+            bossHealthMeter.SetActive(true);
             cameraPullback.SetTrigger("Boss");
             Destroy(other.gameObject);
         }
